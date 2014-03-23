@@ -7,16 +7,24 @@ using System.IO;
 using System.Threading;
 using printpdf;
 
-namespace ClaimEmailSender.Utils
+namespace printpdf.Utils
 {
+    public enum TypeActionPrint { GoustScript, AdobePrint };
     public static class UtilPrinters
     {
-      
-        public static void PrintPdf(Settings settings, string file2Print, Action<string> log)
+
+        public static void PrintPdf(Settings settings, string file2Print, Action<string> log, TypeActionPrint typeActionPrint=TypeActionPrint.GoustScript)
         {
             Log(log, "Start PRINTING " + file2Print);
-            PrintPdfByPostScript(settings, file2Print, log);
-           // PrintPdfByAdobeReader(settings, file2Print, log);
+            if (typeActionPrint == TypeActionPrint.AdobePrint)
+            {
+                PrintPdfByAdobeReader(settings, file2Print, log);
+            }
+            else
+            {
+                PrintPdfByPostScript(settings, file2Print, log);//preffer
+            }
+           // 
             Log(log, "End PRINTING " + file2Print);
 
         }

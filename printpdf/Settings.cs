@@ -9,7 +9,6 @@ namespace printpdf
     {
         public string AdobeFileName { get; set; }
 
-        public string ImpersonatePrinterUser { get; set; }
 
         public string AdobePath { get; set; }
 
